@@ -4,10 +4,10 @@ pipeline{
        stage('hosting application'){
         steps{
           sh "ls"
-          sh "aws rds create-db-instance --db-instance-identifier test-mysql --db-name dfsms --db-instance-class db.t2.micro --vpc-security-group-ids  sg-04638412bef8421f5 --engine mysql --engine-version 5.7 --db-parameter-group-name default.mysql5.7 --publicly-accessible  --master-username admin --master-user-password shiva123 --allocated-storage 10 --region us-east-2"
+          sh "aws rds create-db-instance --db-instance-identifier test-mysql2 --db-name dfsms --db-instance-class db.t2.micro --vpc-security-group-ids  sg-04638412bef8421f5 --engine mysql --engine-version 5.7 --db-parameter-group-name default.mysql5.7 --publicly-accessible  --master-username admin --master-user-password shiva123 --allocated-storage 10 --region us-east-2"
           sleep(450)
           script{
-              def cmd = "aws rds describe-db-instances --db-instance-identifier test-mysql --region us-east-2"
+              def cmd = "aws rds describe-db-instances --db-instance-identifier test-mysql2 --region us-east-2"
               def output = sh(script: cmd,returnStdout: true)
               jsonitem = readJSON text: output
               println(jsonitem)
